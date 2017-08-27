@@ -1,3 +1,4 @@
+Attribute VB_Name = "Module1"
 Const DAY_GOOD_START_ROW_NUMBER = 2
 Const DAY_GOOD_NAME_COLUMN_NUMBER = 2
 Const DAY_GOOD_COUNT_COLUMN_NUMBER = 4
@@ -6,14 +7,14 @@ Const DAY_GOOD_AMOUNT_COLUMN_NUMBER = 5
 Const GOOD_PAY_NAME_COLUMN_NUMBER = 1
 Const GOOD_PAY_COUNT_COLUMN_NUMBER = 2
 Const GOOD_PAY_AMOUNT_COLUMN_NUMBER = 3
-Const sheetName = "ÈÒÎÃ ÏÐÎÄÀÆ"
+Const sheetName = "ИТОГ ПРОДАЖ"
 Sub makeGoodsPayCountSheet()
  
     createSheet (sheetName)
     Set sheet = Sheets(sheetName)
     
-    sheet.Cells(1, 1).Value = "Íàçâàíèå"
-    sheet.Cells(1, 2).Value = "Êîë-âî"
+    sheet.Cells(1, 1).Value = "Название"
+    sheet.Cells(1, 2).Value = "Кол-во"
     ' need add Microsoft Scripting Runtime library. (Add a reference to your project from the Tools...References menu in the VBE.)
     Dim d As Dictionary
     Set d = New Dictionary
@@ -46,7 +47,7 @@ Sub makeGoodsPayCountSheet()
 End Sub
 
  Function isDaySheet(sheet)
-    If (sheet.name = "Òîâàðû" Or sheet.name = "Øàáëîí" Or sheet.name = "ÈÒÎÃÎ" Or sheet.name = "ËÈÔÎÐ" Or sheet.name = sheetName) Then
+    If (sheet.name = "Товары" Or sheet.name = "Шаблон" Or sheet.name = "ИТОГО" Or sheet.name = "ЛИФОР" Or sheet.name = sheetName) Then
         isDaySheet = False
     Else
         isDaySheet = True
@@ -68,7 +69,7 @@ Sub createSheet(sheetName)
 End Sub
    
 Function isGoodName(name)
-    If (name <> "" And name <> "ÈÒÎÃÎ") Then
+    If (name <> "" And name <> "ИТОГО") Then
         isGoodName = True
     Else
       isGoodName = False
@@ -83,4 +84,5 @@ Function addGoodRow(sheet, goodName, maxRowNumber)
   sheet.Cells(goodRowNumber, GOOD_PAY_AMOUNT_COLUMN_NUMBER).Value = 0
   addGoodRow = goodRowNumber
 End Function
+
 
