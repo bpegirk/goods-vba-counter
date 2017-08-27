@@ -13,13 +13,16 @@ Sub makeGoodsPayCountSheet()
     createSheet (sheetName)
     Set sheet = Sheets(sheetName)
     
+    ' clear cheet
+    sheet.UsedRange.ClearContents
+    
     sheet.Cells(1, 1).Value = "Название"
     sheet.Cells(1, 2).Value = "Кол-во"
     ' need add Microsoft Scripting Runtime library. (Add a reference to your project from the Tools...References menu in the VBE.)
     Dim d As Dictionary
     Set d = New Dictionary
     
-    rowNum = 2
+    rowNum = 1
     For Each s In Sheets
         If (isDaySheet(s)) Then
             sheetRowNum = 2
@@ -47,7 +50,7 @@ Sub makeGoodsPayCountSheet()
 End Sub
 
  Function isDaySheet(sheet)
-    If (sheet.name = "Товары" Or sheet.name = "Шаблон" Or sheet.name = "ИТОГО" Or sheet.name = "ЛИФОР" Or sheet.name = sheetName) Then
+    If (sheet.name = "Товары" Or sheet.name = "Шаблон" Or sheet.name = "ИТОГИ" Or sheet.name = "ЛИФОР" Or sheet.name = sheetName) Then
         isDaySheet = False
     Else
         isDaySheet = True
