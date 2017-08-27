@@ -1,4 +1,4 @@
-Attribute VB_Name = "Module1"
+
 Const DAY_GOOD_START_ROW_NUMBER = 2
 Const DAY_GOOD_NAME_COLUMN_NUMBER = 2
 Const DAY_GOOD_COUNT_COLUMN_NUMBER = 4
@@ -18,6 +18,7 @@ Sub makeGoodsPayCountSheet()
     
     sheet.Cells(1, 1).Value = "Название"
     sheet.Cells(1, 2).Value = "Кол-во"
+    sheet.Cells(1, 3).Value = "Сумма"
     ' need add Microsoft Scripting Runtime library. (Add a reference to your project from the Tools...References menu in the VBE.)
     Dim d As Dictionary
     Set d = New Dictionary
@@ -28,7 +29,7 @@ Sub makeGoodsPayCountSheet()
             sheetRowNum = 2
                 
             While (isGoodName(s.Cells(sheetRowNum, DAY_GOOD_NAME_COLUMN_NUMBER).Value))
-                goodName = s.Cells(sheetRowNum, DAY_GOOD_NAME_COLUMN_NUMBER).Value
+                goodName = LCase(Trim(s.Cells(sheetRowNum, DAY_GOOD_NAME_COLUMN_NUMBER).Value))
                 goodCount = s.Cells(sheetRowNum, DAY_GOOD_COUNT_COLUMN_NUMBER).Value
                 goodAmount = s.Cells(sheetRowNum, DAY_GOOD_AMOUNT_COLUMN_NUMBER).Value
                 
@@ -87,5 +88,3 @@ Function addGoodRow(sheet, goodName, maxRowNumber)
   sheet.Cells(goodRowNumber, GOOD_PAY_AMOUNT_COLUMN_NUMBER).Value = 0
   addGoodRow = goodRowNumber
 End Function
-
-
